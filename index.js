@@ -1,5 +1,6 @@
 // Exogen. Redefining your horizons.
 const express = require("express");
+const cors = require('cors')
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
@@ -7,7 +8,6 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { GoogleAIFileManager } = require("@google/generative-ai/server");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-
 
 const PORT = process.env.PORT || 3001;
 const API_KEY = process.env.API_KEY || process.exit(1);
@@ -17,6 +17,8 @@ const fileManager = new GoogleAIFileManager(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const app = express();
+app.use(cors());
+
 
 app.get("/api/healthcheck", (req, res) => {
   res.json({ success: true });
