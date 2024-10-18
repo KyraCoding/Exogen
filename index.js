@@ -4,6 +4,8 @@ const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { GoogleAIFileManager } = require("@google/generative-ai/server");
 const storage = multer.memoryStorage();
@@ -17,7 +19,6 @@ const fileManager = new GoogleAIFileManager(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const app = express();
-
 app.use(cors({ origin: true, credentials: true }));
 
 
