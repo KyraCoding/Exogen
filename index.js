@@ -18,13 +18,9 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const app = express();
 
-const corsOptions = {
-  origin: 'https://plutusai.vercel.app/',
-  methods: 'GET,POST',
-  allowedHeaders: 'Content-Type,Authorization'
-};
+app.use(cors({ origin: true, credentials: true }));
 
-app.use(cors(corsOptions));
+
 app.get("/api/healthcheck", (req, res) => {
   res.json({ success: true });
 });
