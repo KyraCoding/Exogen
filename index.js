@@ -13,7 +13,7 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const app = express();
-app.get("/api/test", (req, res) => {
+app.get("/api/healthcheck", (req, res) => {
   res.json({ success: true });
 });
 app.get("/api/generate/", async (req, res) => {
