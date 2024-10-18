@@ -1,6 +1,6 @@
 // Exogen. Redefining your horizons.
 const express = require("express");
-const cors = require('cors')
+const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
@@ -17,9 +17,14 @@ const fileManager = new GoogleAIFileManager(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const app = express();
-app.use(cors());
 
+const corsOptions = {
+  origin: 'https://plutusai.vercel.app/',
+  methods: 'GET,POST',
+  allowedHeaders: 'Content-Type,Authorization'
+};
 
+app.use(cors(corsOptions));
 app.get("/api/healthcheck", (req, res) => {
   res.json({ success: true });
 });
