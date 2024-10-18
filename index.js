@@ -52,6 +52,7 @@ app.post("/api/analyze", upload.single('image'), async (req, res) => {
     ]);
     res.json({ response: result.response.text(), success: true });
   } catch (err) {
+    console.log(err)
     res.status(500).send({ response: 'An error occurred while processing the file.', success: false });
   }
 });
